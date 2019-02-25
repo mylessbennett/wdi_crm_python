@@ -24,11 +24,20 @@ class Contact:
     @classmethod
     def all(cls):
         """This method should return all of the existing contacts"""
+        all_contacts = []
+        for item in cls.contacts:
+            all_contacts.append(item)
+        return all_contacts
 
     @classmethod
-    def find(cls):
+    def find(cls, id):
         """ This method should accept an id as an argument
         and return the contact who has that id"""
+        requested_contact = 0
+        for contact in cls.contacts:
+            if contact.id == id:
+                requested_contact = contact
+        return requested_contact
 
     def update(self):
         """ This method should allow you to specify
@@ -55,10 +64,15 @@ class Contact:
         HINT: Check the Array class docs for built-in methods that might be useful here
         """
 
-
 # Feel free to add other methods here, if you need them.
-# contact1 = Contact.create('Myles', 'Bennett', 'myles.bennett@hotmail.com', 'Sup?')
-# contact2 = Contact.create('Another', 'Person', 'newguy@bitmakerlabs.com', 'howdy')
-# print(len(Contact.contacts))
-# print(contact1.id)
-# print(contact2.id)
+    def __str__(self):
+        return "Name: {} {} | Email: {} | Note: {}".format(self.first_name, self.last_name, self.email, self.note)
+
+
+contact1 = Contact.create('Myles', 'Bennett', 'myles.bennett@hotmail.com', 'Sup?')
+contact2 = Contact.create('Another', 'Person', 'newguy@bitmakerlabs.com', 'howdy')
+print(len(Contact.contacts))
+print(contact1.id)
+print(contact2.id)
+print(Contact.all())
+print(Contact.find(1))
