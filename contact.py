@@ -44,11 +44,10 @@ class Contact:
         1. which of the contact's attributes you want to update
         2. the new value for that attribute
         and then make the appropriate change to the contact"""
-        # info_to_change = updated_info
         attrib_to_change = attrib_to_change.lower()
-        if attrib_to_change == 'first_name':
+        if attrib_to_change == 'first name':
             self.first_name = new_value
-        elif attrib_to_change == 'last_name':
+        elif attrib_to_change == 'last name':
             self.last_name = new_value
         elif attrib_to_change == 'email':
             self.email = new_value
@@ -58,11 +57,29 @@ class Contact:
             print("Please enter a valid attribute to change.")
 
     @classmethod
-    def find_by(cls):
+    def find_by(cls, search_attribute, search_value):
         """This method should work similarly to the find method above
         but it should allow you to search for a contact using attributes other than id
         by specifying both the name of the attribute and the value
         eg. searching for 'first_name', 'Betty' should return the first contact named Betty"""
+        search_result = None
+        search_attribute = search_attribute.lower()
+        for contact in cls.contacts:
+            if search_attribute == 'first name':
+                if contact.first_name == search_value:
+                    search_result = contact
+            elif search_attribute == 'last name':
+                if contact.last_name == search_value:
+                    search_result = contact
+            elif search_attribute == 'email':
+                if contact.email == search_value:
+                    search_result = contact
+            elif search_attribute == 'note':
+                if contact.note == search_value:
+                    search_result = contact
+            else:
+                print("Please enter a valid attribute or value.")
+            return search_result
 
     @classmethod
     def delete_all(cls):
@@ -70,6 +87,8 @@ class Contact:
 
     def full_name(self):
         """Returns the full (first and last) name of the contact"""
+        full_name = self.first_name + ' ' + self.last_name
+        return full_name
 
     def delete(self):
         """This method should delete the contact
@@ -88,6 +107,7 @@ contact2 = Contact.create('Another', 'Friend', 'newguy@bitmakerlabs.com', 'howdy
 # print(contact2.id)
 # print(Contact.all())
 # print(Contact.find(1))
-contact2.update('first_name', 'My')
-contact2.update('email', 'newemail@bitmakerlabs.com')
-print(contact2)
+# contact2.update('First name', 'My')
+# contact2.update('Email', 'newemail@bitmakerlabs.com')
+# print(contact2)
+print(Contact.find_by('last name', 'Bennett'))
