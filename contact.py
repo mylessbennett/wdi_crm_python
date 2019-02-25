@@ -84,6 +84,7 @@ class Contact:
     @classmethod
     def delete_all(cls):
         """This method should delete all of the contacts"""
+        cls.contacts = []
 
     def full_name(self):
         """Returns the full (first and last) name of the contact"""
@@ -94,12 +95,15 @@ class Contact:
         """This method should delete the contact
         HINT: Check the Array class docs for built-in methods that might be useful here
         """
+        Contact.contacts.remove(self)
 
 # Feel free to add other methods here, if you need them.
     def __str__(self):
         return "Name: {} {} | Email: {} | Note: {}".format(self.first_name, self.last_name, self.email, self.note)
 
 
+# ---------------------------------------------------------------------------
+# Testing
 contact1 = Contact.create('Myles', 'Bennett', 'myles.bennett@hotmail.com', 'Sup?')
 contact2 = Contact.create('Another', 'Friend', 'newguy@bitmakerlabs.com', 'howdy')
 # print(len(Contact.contacts))
@@ -107,7 +111,8 @@ contact2 = Contact.create('Another', 'Friend', 'newguy@bitmakerlabs.com', 'howdy
 # print(contact2.id)
 # print(Contact.all())
 # print(Contact.find(1))
-# contact2.update('First name', 'My')
+contact2.update('First name', 'My')
 # contact2.update('Email', 'newemail@bitmakerlabs.com')
 # print(contact2)
 print(Contact.find_by('last name', 'Bennett'))
+print(contact2.full_name())
