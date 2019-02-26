@@ -91,9 +91,17 @@ class CRM:
             search_attribute = 'first name'
             print(Contact.find_by(search_attribute, search_value))
 
-    # def delete_contact(self):
-    #     contact_to_delete = input("Enter the id of the contact you would like to delete: ")
-    #     contact_to_delete.delete(self)
+    def delete_contact(self):
+        contact_id = input("Enter the id of the contact you want to delete: ")
+
+        contact_to_delete = Contact.find(contact_id)
+        Contact.delete(contact_to_delete)
+
+        print("Successfully deleted contact")
+
+
+
+
 
 
 my_crm_app = CRM()

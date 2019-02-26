@@ -95,7 +95,9 @@ class Contact:
         """This method should delete the contact
         HINT: Check the Array class docs for built-in methods that might be useful here
         """
-        Contact.contacts.remove(self)
+        for contact in Contact.contacts:
+            if self == contact:
+                Contact.contacts.remove(self)
 
 # Feel free to add other methods here, if you need them.
     def __str__(self):
