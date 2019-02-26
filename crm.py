@@ -25,9 +25,9 @@ class CRM:
         elif user_selected == 2:
             self.modify_existing_contact()
         elif user_selected == 3:
-            self.remove()
+            pass
         elif user_selected == 4:
-            self.remove()
+            self.display_all_contacts()
         elif user_selected == 5:
             self.search_by_attribute()
         elif user_selected == 6:
@@ -40,13 +40,40 @@ class CRM:
         note = input("Enter Contact Note: ")
         new_contact = Contact.create(first_name, last_name, email, note)
         print('New Contact: Name: {} {} | Email: {} | Note: {} '.format(first_name, last_name, email, note))
-        return new_contact
+
+    def modify_existing_contact(self):
+        user_id = int(input("Enter the id of the contact you wish to update: "))
+        selected_contact = Contact.find(user_id)
+
+        print("Select an attribute to change")
+        print("1 - First Name")
+        print("2 - Last Name")
+        print("3 - Email")
+        print("4 - Note")
+        attribute = int(input("Enter the number of attribute to be changed: "))
+
+        new_value = input("Enter the new info:")
+
+        if attribute == 1:
+            selected_contact.update('first name', new_value)
+        elif attribute == 2:
+            selected_contact.update('last name', new_value)
+        elif attribute == 3:
+            selected_contact.update('email', new_value)
+        elif attribute == 4:
+            selected_contact.update('note', new_value)
+
+    def display_all_contacts(self):
+        all_contacts = Contact.all()
+        for contact in all_contacts:
+            print(contact)
+
+
+    # def display_all_contacts(self):
 
 
 
-  # def add_new_contact(self):
-  #
-  #
+
   # def modify_existing_contact(self):
   #
   #
